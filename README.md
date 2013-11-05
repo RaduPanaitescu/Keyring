@@ -8,4 +8,4 @@ System.out.println("Tiganie");
 
 System.out.println("Se stie pe sistem...sistem out print si ln");
 
-jhkjghjhg
+lkenvrjkenvrklneoinreo
