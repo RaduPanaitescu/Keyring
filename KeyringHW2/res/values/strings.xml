@@ -10,5 +10,11 @@
     <string name="title_activity_sec">MainActivity</string>
     <string name="title_activity_second">SecondActivity</string>
     <string name="welcome">Insert the right password or go fuck yourself!</string>
-
+ 	<string name="dialog_uname">Username</string>
+ 	<string name="dialog_submit">Submit</string>
+ 	<string name="dialog_cancel">Cancel</string>
+ 	<string name="btn_launch">Start the application</string>
+ 	<string name="textView1">Keyring Application</string>
+ 	<string name="keyring_apllication">Keyring Apllication</string>
+ 	<string name="start_the_application">Start the application</string>
 </resources>
