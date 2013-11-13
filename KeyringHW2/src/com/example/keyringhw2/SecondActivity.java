@@ -211,10 +211,13 @@ public class SecondActivity extends Activity {
                             abc.remove(i);
                             Toast.makeText(getApplicationContext(), "cleared",  Toast.LENGTH_LONG).show();
                         }
-                        else if (!this.listView.isItemChecked(i))
+                        /*else if (!this.listView.isItemChecked(i))
                         {
                                 Toast.makeText(getApplicationContext(), "Removed",  Toast.LENGTH_LONG).show();
+                              
                         }
+                        */
+                   
                     }
                   String temp =  Integer.toString(count);
                   adapter.notifyDataSetChanged();
@@ -303,8 +306,11 @@ public class SecondActivity extends Activity {
                                         showDialog(DIALOG_DELETE);
                                         //delete();
                                         return true;
-                                       
-                                   
+                       case R.id.action_edit:
+                            showDialog(DIALOG_LOGIN);             
+                            showDialog(DIALOG_DELETE);
+                            			return true;
+                                        
                         default:
                             return super.onOptionsItemSelected(item);
                        
