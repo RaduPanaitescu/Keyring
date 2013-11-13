@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.content.SharedPreferences;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View.OnClickListener;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,10 +26,14 @@ public class SecondActivity extends Activity {
 	public static final String SETTING_INFOS = "SETTING_Infos";
 	  public static final String NAME = "NAME";
 	  public static final String PASSWORD = "PASSWORD"; 
+	  ListView listView;
 	//ArrayList<String> list = new ArrayList<String>();
 	//private ArrayAdapter arrayAdapter;
 	static ArrayList<String> abc = new ArrayList<String>();
 	final private static int DIALOG_LOGIN = 1;
+	final private static int DIALOG_DELETE= 0;
+	//private static final int DIALOG_DELETE = 0;
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -48,15 +55,35 @@ public class SecondActivity extends Activity {
 	 
 //------------------------------------------------	 
 	 	
+	 public void delete()
+	 {
+		
+		 //SparseBooleanArray checkedItemPositions = this.getListView().getCheckedItemPositions();
+		// abc.remove(index)
+		 //abc.removeAll(collection)
+		 //ArrayAdapter<String> adapter = (ArrayAdapter<String>) abc.getAdapter();
+
+		 abc.clear();
+		 
+		// this.no
+		 this.notifyAll();
+		this.notify();
+		 Toast.makeText(getApplicationContext(), "c!!! =)",
+				   Toast.LENGTH_LONG).show();
+	 }
+	 
 	 public void update(String x){
-			ListView listView = (ListView) findViewById(R.id.list);
+			listView = (ListView) findViewById(R.id.list);
 		    abc.add(x); 
+		    
 
 		      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 		        android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, abc);
-		      
+		    adapter.notifyDataSetChanged();  
 		      // Assign adapter to ListView
 		      listView.setAdapter(adapter); 
+		    //  adapter.notifyDataSetChanged();
+		    
 		}
 	 
 	 @Override
@@ -66,6 +93,7 @@ public class SecondActivity extends Activity {
 
 	  switch (id) {
 	  case DIALOG_LOGIN:
+		  
 	   LayoutInflater inflater = LayoutInflater.from(this);
 	   View dialogview = inflater.inflate(R.layout.dialog_layout, null);
 
@@ -73,8 +101,24 @@ public class SecondActivity extends Activity {
 	   dialogbuilder.setTitle("Enter desired text");
 	   dialogbuilder.setView(dialogview);
 	   dialogDetails = dialogbuilder.create();
-
+	   
 	   break;
+	  
+	  case DIALOG_DELETE:
+		  //this.notify();
+		  //String first = Integer.toString(listView.getFirstVisiblePosition()+listView.getLastVisiblePosition());
+		  //String second = Integer.toString();
+		  abc.remove(listView.getLastVisiblePosition());
+		  listView.removeViewsInLayout(0, listView.getLastVisiblePosition());
+		  
+		 
+		  //int second =  listView.getLastVisiblePosition();
+		 // first.toString();
+		  
+			 Toast.makeText(getApplicationContext(), "clear!!!",
+					   Toast.LENGTH_LONG).show();
+			 
+			 //listView.notifyAll();
 	  }
 
 	  return dialogDetails;
@@ -141,9 +185,16 @@ public class SecondActivity extends Activity {
 		        case R.id.action_new:
 		    		    showDialog(DIALOG_LOGIN);
 		    		    return true;
-
-		           default:
+		    	
+		        case R.id.action_remove:
+		        		showDialog(DIALOG_DELETE);
+		        		//delete();
+		        		return true;
+		        		
+		    		    
+		        default:
 		            return super.onOptionsItemSelected(item);
+		        
 		    }
 		    }
 }
