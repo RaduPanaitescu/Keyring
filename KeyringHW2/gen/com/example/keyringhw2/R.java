@@ -29,18 +29,21 @@ public final class R {
         public static final int ic_launcher_second_icon=0x7f020005;
     }
     public static final class id {
-        public static final int action_edit=0x7f08000b;
-        public static final int action_new=0x7f08000a;
-        public static final int action_remove=0x7f08000c;
-        public static final int action_settings=0x7f080009;
+        public static final int action_edit=0x7f08000e;
+        public static final int action_new=0x7f08000d;
+        public static final int action_remove=0x7f08000f;
+        public static final int action_settings=0x7f08000c;
         public static final int btn_cancel=0x7f080008;
         public static final int btn_launch=0x7f080001;
         public static final int btn_login=0x7f080007;
         public static final int button1=0x7f080002;
         public static final int editText1=0x7f080003;
         public static final int list=0x7f080004;
+        public static final int masterPassSetup1a=0x7f08000a;
+        public static final int masterPassSetup2a=0x7f08000b;
         public static final int password=0x7f080006;
         public static final int textView1=0x7f080000;
+        public static final int textView2=0x7f080009;
         public static final int txt_name=0x7f080005;
     }
     public static final class layout {
@@ -48,6 +51,11 @@ public final class R {
         public static final int activity_main=0x7f030001;
         public static final int activity_second=0x7f030002;
         public static final int dialog_layout=0x7f030003;
+        public static final int masterpass_dialog=0x7f030004;
+        public static final int masterpass_dialog_fail=0x7f030005;
+        public static final int masterpass_setup_dialog=0x7f030006;
+        public static final int masterpass_setup_fail=0x7f030007;
+        public static final int masterpass_setup_successful=0x7f030008;
     }
     public static final class menu {
         public static final int android_dialog=0x7f070000;
@@ -58,36 +66,47 @@ public final class R {
     }
     public static final class string {
         public static final int action_edit=0x7f050004;
-        public static final int action_forgot_password=0x7f050017;
+        public static final int action_forgot_password=0x7f050022;
         public static final int action_new=0x7f050003;
         public static final int action_remove=0x7f050005;
         public static final int action_settings=0x7f050001;
-        public static final int action_sign_in_register=0x7f050015;
-        public static final int action_sign_in_short=0x7f050016;
+        public static final int action_sign_in_register=0x7f050020;
+        public static final int action_sign_in_short=0x7f050021;
         public static final int app_name=0x7f050000;
         public static final int btn_launch=0x7f05000c;
         public static final int dialog_cancel=0x7f05000b;
         public static final int dialog_submit=0x7f05000a;
         public static final int dialog_uname=0x7f050009;
-        public static final int error_field_required=0x7f05001c;
-        public static final int error_incorrect_password=0x7f05001b;
-        public static final int error_invalid_email=0x7f050019;
-        public static final int error_invalid_password=0x7f05001a;
+        public static final int enterpass=0x7f05001a;
+        public static final int error_field_required=0x7f050027;
+        public static final int error_incorrect_password=0x7f050026;
+        public static final int error_invalid_email=0x7f050024;
+        public static final int error_invalid_password=0x7f050025;
         public static final int hello_world=0x7f050002;
         public static final int keyring_apllication=0x7f05000e;
-        public static final int login_progress_signing_in=0x7f050018;
+        public static final int login_progress_signing_in=0x7f050023;
+        public static final int masterPassSetup1=0x7f050012;
+        public static final int masterPassSetup2=0x7f050013;
+        public static final int masterpassFail=0x7f05001b;
+        public static final int masterpassFailMessage=0x7f05001c;
+        public static final int ok=0x7f050014;
+        public static final int passwords_dont_match=0x7f050015;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f050013;
-        public static final int prompt_password=0x7f050014;
+        public static final int prompt_email=0x7f05001e;
+        public static final int prompt_password=0x7f05001f;
         public static final int pw=0x7f050011;
+        public static final int retype=0x7f050017;
         public static final int start_the_application=0x7f05000f;
+        public static final int success=0x7f050018;
+        public static final int success_description=0x7f050019;
         public static final int textView1=0x7f05000d;
-        public static final int title_activity_login=0x7f050012;
+        public static final int title_activity_login=0x7f05001d;
         public static final int title_activity_sec=0x7f050006;
         public static final int title_activity_second=0x7f050007;
         public static final int un=0x7f050010;
         public static final int welcome=0x7f050008;
+        public static final int welcome_description=0x7f050016;
     }
     public static final class style {
         /** 
