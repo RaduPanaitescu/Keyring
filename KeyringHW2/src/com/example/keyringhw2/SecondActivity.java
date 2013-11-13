@@ -5,13 +5,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
  
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,16 +33,17 @@ public class SecondActivity extends Activity {
         public static final String SETTING_INFOS = "SETTING_Infos";
           public static final String NAME = "NAME";
           public static final String PASSWORD = "PASSWORD";
+         
           ListView listView;
-        //ArrayList<String> list = new ArrayList<String>();
-        //private ArrayAdapter arrayAdapter;
+          ArrayAdapter<String> adapter;
+ 
         static ArrayList<String> abc = new ArrayList<String>();
         final private static int DIALOG_LOGIN = 1;
         final private static int DIALOG_DELETE= 0;
-        //private static final int DIALOG_DELETE = 0;
        
         @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+        public boolean onCreateOptionsMenu(Menu menu)
+        {
                 MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.main_activity_actions, menu);
             return super.onCreateOptionsMenu(menu);
@@ -47,122 +51,107 @@ public class SecondActivity extends Activity {
        
        
          @Override
-         public void onCreate(Bundle savedInstanceState) {
+         public void onCreate(Bundle savedInstanceState)
+         {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_second);
-          fileToArray();
-         
-         
-         
+          fileToArray();          
          }
          
 //-------------------Store------------------------
          
 //------------------------------------------------       
-         
-         //********************method from array to file
-         private final static String STORETEXT="storetext.txt";
-         public void fromArrayWritetoFile(){
+     //********************method from array to file
+     private final static String STORETEXT="storetext.txt";
+     public void fromArrayWritetoFile()
+     {
  
-try {
- 
-OutputStreamWriter out= new OutputStreamWriter(openFileOutput(STORETEXT, 0));
- 
-for (int k = 0; k < abc.size(); k++)  
-    out.write(abc.get(k)+"\n");    
- 
- 
-out.close();
- 
-//to announce the user that the contents are saved
-Toast.makeText(this, "The contents are saved in the file.", Toast.LENGTH_LONG)
- 
-.show();
- 
-}
- 
-catch (Throwable t) {
- 
-Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
- 
-}
-                }
-         
-         //******method from file to array
-         public void fileToArray(){
- 
-                        try {
- 
-                        InputStream in = openFileInput(STORETEXT);
- 
-                        if (in != null) {
- 
-                        InputStreamReader tmp=new InputStreamReader(in);
- 
-                        BufferedReader reader=new BufferedReader(tmp);
- 
-                        String str;
- 
-                        StringBuilder buf=new StringBuilder();
-                       
-                        while ((str = reader.readLine()) != null) {
-                               
-                        abc.add(str);
-                        }
- 
-                        in.close();
- 
-                       
- 
-                        }
- 
-                        }
- 
-                        catch (java.io.FileNotFoundException e) {
- 
-                        // that's OK, we probably haven't created it yet
- 
-                        }
- 
-                        catch (Throwable t) {
- 
-                        Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
- 
-                        }
-         }
-         
-         
-         //************
-         
-         public void delete()
+         try
          {
-               
-                 //SparseBooleanArray checkedItemPositions = this.getListView().getCheckedItemPositions();
-                // abc.remove(index)
-                 //abc.removeAll(collection)
-                 //ArrayAdapter<String> adapter = (ArrayAdapter<String>) abc.getAdapter();
  
-                 abc.clear();
-                 
-                // this.no
-                 this.notifyAll();
-                this.notify();
-                 Toast.makeText(getApplicationContext(), "c!!! =)",
-                                   Toast.LENGTH_LONG).show();
+                 OutputStreamWriter out= new OutputStreamWriter(openFileOutput(STORETEXT, 0));
+ 
+                 for (int k = 0; k < abc.size(); k++)  
+                         out.write(abc.get(k)+"\n");    
+ 
+ 
+                 out.close();
+ 
+                 //to announce the user that the contents are saved
+                 Toast.makeText(this, "The contents are saved in the file.", Toast.LENGTH_LONG)
+ 
+                 .show();
+ 
          }
+ 
+         catch (Throwable t)
+         {
+                 Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
+         }
+     }
+     
+     //******method from file to array
+     public void fileToArray(){
+ 
+                    try {
+ 
+                    InputStream in = openFileInput(STORETEXT);
+ 
+                    if (in != null) {
+ 
+                    InputStreamReader tmp=new InputStreamReader(in);
+ 
+                    BufferedReader reader=new BufferedReader(tmp);
+ 
+                    String str;
+ 
+                    StringBuilder buf=new StringBuilder();
+                   
+                    while ((str = reader.readLine()) != null) {
+                           
+                    abc.add(str);
+                    }
+ 
+                    in.close();
+ 
+                   
+ 
+                    }
+ 
+                    }
+ 
+                    catch (java.io.FileNotFoundException e) {
+ 
+                    // that's OK, we probably haven't created it yet
+ 
+                    }
+ 
+                    catch (Throwable t) {
+ 
+                    Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
+ 
+                    }
+     }
+     
+     
+     //************
+     
+//------------------------------------------------      
+               
          
          public void update(String x){
                         listView = (ListView) findViewById(R.id.list);
                     abc.add(x);
                    
  
-                      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                     adapter = new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, abc);
                     adapter.notifyDataSetChanged();  
                       // Assign adapter to ListView
                       listView.setAdapter(adapter);
+                      adapter.notifyDataSetChanged();
                     //  adapter.notifyDataSetChanged();
-                    fromArrayWritetoFile();
+                   
                 }
          
          @Override
@@ -184,20 +173,54 @@ Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
            break;
          
           case DIALOG_DELETE:
-                  //this.notify();
-                  //String first = Integer.toString(listView.getFirstVisiblePosition()+listView.getLastVisiblePosition());
-                  //String second = Integer.toString();
-                  abc.remove(listView.getLastVisiblePosition());
-                  listView.removeViewsInLayout(0, listView.getLastVisiblePosition());
+     
+                 
+                  /*List<Integer> checkedIDs = new ArrayList<Integer>();
+                  final SparseBooleanArray checkedItems = listView.getCheckedItemPositions();
+                  String numere = "";
+ 
+                  for (int i = 0; i <= checkedItems.size(); i++){
+                            // And this tells us the item status at the above position
+                            final boolean isChecked = checkedItems.valueAt(i);
+                           
+                            if (isChecked)
+                            {
+                                // This tells us the item position we are looking at
+                                final int position = checkedItems.keyAt(i);
+                                if(position==0)
+                                {
+                                        abc.remove(0);
+                                        listView.removeViewsInLayout(0,0);
+                                        adapter.notifyDataSetChanged();
+                                }
+                                else
+                                {
+                                // Put the value of the id in our list
+                                        checkedIDs.add(position);
+                                        abc.remove(position);
+                                        listView.removeViewsInLayout(position, position);
+                                        adapter.notifyDataSetChanged();
+                                }
+                            }
+                  }*/
+                  int count = this.listView.getAdapter().getCount();
+                    for (int i = 0; i < count; i++)
+                    {
+                        if (this.listView.isItemChecked(i))
+                        {
+                            abc.remove(i);
+                            Toast.makeText(getApplicationContext(), "cleared",  Toast.LENGTH_LONG).show();
+                        }
+                        else if (!this.listView.isItemChecked(i))
+                        {
+                                Toast.makeText(getApplicationContext(), "Please select atleast 1",  Toast.LENGTH_LONG).show();
+                        }
+                    }
+                  String temp =  Integer.toString(count);
+                  adapter.notifyDataSetChanged();
                  
                  
-                  //int second =  listView.getLastVisiblePosition();
-                 // first.toString();
                  
-                         Toast.makeText(getApplicationContext(), "clear!!!",
-                                           Toast.LENGTH_LONG).show();
-                         
-                         //listView.notifyAll();
           }
  
           return dialogDetails;
@@ -253,7 +276,18 @@ Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
           }
  
          }
-         
+         //------KILL APP ON BACK BUTTON PRESSED-----------    
+     @Override
+     public void onBackPressed() {
+         Log.d("CDA", "onBackPressed Called");
+         Intent intent = new Intent();
+         intent.setAction(Intent.ACTION_MAIN);
+         intent.addCategory(Intent.CATEGORY_HOME);
+         adapter.notifyDataSetChanged();
+         startActivity(intent);
+     
+     }
+    //------------------------------------------------    
          
          
          @SuppressWarnings("deprecation")
@@ -267,21 +301,6 @@ Toast.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG).show();
                        
                         case R.id.action_remove:
                                         showDialog(DIALOG_DELETE);
-                                        final SparseBooleanArray checkedItems = listView.getCheckedItemPositions();
-                                    for (int i = 0; i < checkedItems.size(); i++){
-                                       // And this tells us the item status at the above position
-                                       final boolean isChecked = checkedItems.valueAt(i);
-                                       if (isChecked){
-                                           // This tells us the item position we are looking at
-                                           final int position = checkedItems.keyAt(i);
-                                           abc.remove(position);
-                                           listView.removeViewsInLayout(position, position);
-                                          // adapter.notifyDataSetChanged();
-                                           // Put the value of the id in our list
-                                           //checkedIDs.put(position);                                                      
-                                       }
-                                    }
-                               
                                         //delete();
                                         return true;
                                        
