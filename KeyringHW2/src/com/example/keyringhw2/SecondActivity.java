@@ -1,6 +1,7 @@
 package com.example.keyringhw2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -28,6 +29,8 @@ public class SecondActivity extends Activity {
 	  public static final String PASSWORD = "PASSWORD"; 
 	  ListView listView;
 	  ArrayAdapter<String> adapter;
+	  List<Integer> checkedIDs = new ArrayList<Integer>(); 
+	  
 	//ArrayList<String> list = new ArrayList<String>();
 	//private ArrayAdapter arrayAdapter;
 	static ArrayList<String> abc = new ArrayList<String>();
@@ -108,10 +111,36 @@ public class SecondActivity extends Activity {
 	  
 	  case DIALOG_DELETE:
 
-		  abc.clear();
-		  listView.removeViewsInLayout(0, listView.getLastVisiblePosition());
-		  adapter.notifyDataSetChanged();    
+		  //abc.clear();
+		  //abc.remove(1);
+		  //listView.removeViewAt(listView.getLastVisiblePosition()-1);
+		 
+		 // listView.removeViewsInLayout(0, listView.getLastVisiblePosition());
+		      
+		  
+		  final SparseBooleanArray checkedItems = listView.getCheckedItemPositions(); 
+		  int[] anArray;
+		  anArray = new int[9999];
+		  for (int i = 0; i < checkedItems.size(); i++){
+			    // And this tells us the item status at the above position
+			    final boolean isChecked = checkedItems.valueAt(i);
+			    if (isChecked){
+			        // This tells us the item position we are looking at
+			        final int position = checkedItems.keyAt(i);
+			        anArray[i] = position;
+			        
+			        // Put the value of the id in our list
+			        //checkedIDs.put(position);                                                       
+			    }
+		  }
+		  //adapter.removeItem();
+		  for (int i = 0; i < checkedItems.size(); i++){
+			  abc.remove(anArray[i]);
+		      listView.removeViewsInLayout(anArray[i], anArray[i]);
+		      adapter.notifyDataSetChanged();
+		  }
 		  Toast.makeText(getApplicationContext(), "clear!!!",  Toast.LENGTH_LONG).show();
+		  
 	  }
 
 	  return dialogDetails;
