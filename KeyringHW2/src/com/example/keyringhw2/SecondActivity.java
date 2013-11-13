@@ -27,6 +27,7 @@ public class SecondActivity extends Activity {
 	  public static final String NAME = "NAME";
 	  public static final String PASSWORD = "PASSWORD"; 
 	  ListView listView;
+	  ArrayAdapter<String> adapter;
 	//ArrayList<String> list = new ArrayList<String>();
 	//private ArrayAdapter arrayAdapter;
 	static ArrayList<String> abc = new ArrayList<String>();
@@ -77,11 +78,12 @@ public class SecondActivity extends Activity {
 		    abc.add(x); 
 		    
 
-		      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		     adapter = new ArrayAdapter<String>(this,
 		        android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, abc);
 		    adapter.notifyDataSetChanged();  
 		      // Assign adapter to ListView
-		      listView.setAdapter(adapter); 
+		      listView.setAdapter(adapter);
+		      adapter.notifyDataSetChanged();
 		    //  adapter.notifyDataSetChanged();
 		    
 		}
@@ -105,20 +107,11 @@ public class SecondActivity extends Activity {
 	   break;
 	  
 	  case DIALOG_DELETE:
-		  //this.notify();
-		  //String first = Integer.toString(listView.getFirstVisiblePosition()+listView.getLastVisiblePosition());
-		  //String second = Integer.toString();
-		  abc.remove(listView.getLastVisiblePosition());
+
+		  abc.clear();
 		  listView.removeViewsInLayout(0, listView.getLastVisiblePosition());
-		  
-		 
-		  //int second =  listView.getLastVisiblePosition();
-		 // first.toString();
-		  
-			 Toast.makeText(getApplicationContext(), "clear!!!",
-					   Toast.LENGTH_LONG).show();
-			 
-			 //listView.notifyAll();
+		  adapter.notifyDataSetChanged();    
+		  Toast.makeText(getApplicationContext(), "clear!!!",  Toast.LENGTH_LONG).show();
 	  }
 
 	  return dialogDetails;
