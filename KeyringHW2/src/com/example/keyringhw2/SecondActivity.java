@@ -213,7 +213,7 @@ public class SecondActivity extends Activity {
                         }
                         else if (!this.listView.isItemChecked(i))
                         {
-                                Toast.makeText(getApplicationContext(), "Please select atleast 1",  Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Removed",  Toast.LENGTH_LONG).show();
                         }
                     }
                   String temp =  Integer.toString(count);
