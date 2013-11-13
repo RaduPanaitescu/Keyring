@@ -17,4 +17,6 @@
  	<string name="textView1">Keyring Application</string>
  	<string name="keyring_apllication">Keyring Apllication</string>
  	<string name="start_the_application">Start the application</string>
+ 	<string name="un">Enter desired text</string>
+ 	<string name="pw"></string>
 </resources>
