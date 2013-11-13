@@ -27,3 +27,4 @@ WHAT'S UP MY NIGGERS !!!!!!!!!!!!!!!!!!!!!!!!!!
 PRIETENE NU MAI POT DE NERVI CU GITHUB-UL ASTA .. IAR NU MERGE, unFUCKINGbelieveble !!! 
 BTW am facut cu oday add button-ul, insert into list @string from alertdialog .. de ar merge sa-l si pun aici ar fi divin -adi
 
+lll
