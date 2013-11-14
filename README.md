@@ -29,3 +29,6 @@ BTW am facut cu oday add button-ul, insert into list @string from alertdialog ..
 
 lllkmkln
 123
+
+
+ceva ceva ceva 
